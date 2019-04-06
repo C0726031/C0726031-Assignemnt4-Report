@@ -18,11 +18,11 @@ namespace Week14
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
-            p.Wordskipper();
+            p.Letters();
             Console.ReadLine();
         }
         public void Run() { this.ReadTextFiles(); }
-        
+
         public void ReadTextFiles()
         {
             //Read file using StreamReader. Reads file line by line
@@ -37,11 +37,11 @@ namespace Week14
                     Beowulf.Add(ln);
                     Wordfinder();
                 }
-                
-        file.Close();
 
-            Console.WriteLine($"File has {counter} lines.");
-            Console.WriteLine($"File has {counter*5} Words.");
+                file.Close();
+
+                Console.WriteLine($"File has {counter} lines.");
+                Console.WriteLine($"File has {counter * 5} Words.");
 
             }
         }
@@ -71,25 +71,67 @@ namespace Week14
 
             }
 
+
+            public void Letters()
+            {
+
+                StreamReader reader = new StreamReader("Beowulf.txt");
+                string script = reader.ReadToEnd();
+
+                //find number of letters
+                int numberOfLetters = 0;
+                foreach (char letter in script)
+                {
+                    numberOfLetters++;
+                }
+                var text = script.Trim();
+                int wordCount = 0, index = 0;
+
+                //find number of words
+                while (index < text.Length)
+                {
+                    // check if current char is part of a word
+                    while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                        index++;
+
+                    wordCount++;
+
+                    // skip whitespace until next word
+                    while (index < text.Length && char.IsWhiteSpace(text[index]))
+                        index++;
+                }
+
+
+                float val2 = (float)numberOfLetters;
+                float val1 = (float)wordCount;
+
+                //find average
+                float avrg = val2 / val1;
+                Console.WriteLine(avrg);
+            }
+
         }
 
-
-        public int FindNumberOfBlankSpaces(string line)
+    
+    public int FindNumberOfBlankSpaces(string line)
     {
-    // https://stackoverflow.com/questions/17812566/count-words-and-spaces-in-string-c-sharp
-    int countletters = 0;
-    int countSpaces = 0;
+        // https://stackoverflow.com/questions/17812566/count-words-and-spaces-in-string-c-sharp
+        int countletters = 0;
+        int countSpaces = 0;
 
-    foreach(char c in line)
-    {
-     if (char.IsLetter(c)) { countletters++;}
-     if (char.IsWhiteSpace(c)) { countSpaces++;}
+        foreach (char c in line)
+        {
+            if (char.IsLetter(c)) { countletters++; }
+            if (char.IsWhiteSpace(c)) { countSpaces++; }
+
+        }
+        return countSpaces;
+
+
 
     }
-    return countSpaces;
-     
-    }
-      }
-    }
+}
+}
+
     
 
