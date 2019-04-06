@@ -18,7 +18,7 @@ namespace Week14
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
-            p.ReadTextFiles();
+            p.Wordfinder();
             Console.ReadLine();
         }
         public void Run() { this.ReadTextFiles(); }
@@ -35,7 +35,7 @@ namespace Week14
                 {
                     Console.WriteLine(ln);
                     Beowulf.Add(ln);
-                    counter++;
+                  
                 }
                 
         file.Close();
@@ -45,6 +45,21 @@ namespace Week14
 
             }
         }
+        public void Wordfinder()
+        {
+            int f = 0;
+            foreach (var line in File.ReadAllLines("U:/Users/726031/GitHub/Beowulf/Beowulf.txt"))
+            {
+                if (line.Contains("sea") && line.Contains("fare"))
+                {
+                    f++;
+                }
+
+            }
+            Console.WriteLine(f);
+        }
+    
+
 
     public int FindNumberOfBlankSpaces(string line)
     {
@@ -62,6 +77,6 @@ namespace Week14
      
     }
       }
-    
     }
+    
 
